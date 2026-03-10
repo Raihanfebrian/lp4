@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1-on-1 Business Coaching | Taklukkan Stagnansi Bisnis Anda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        accent: {
+                            gold: '#c9a227',
+                            warm: '#d4a574',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+        
+        /* Gradient Overlays */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .float-animation {
+                animation: none;
+            }
+        }
+        
+        /* Button Styling */
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a227 0%, #d4a574 100%);
+            color: #0c4a6e !important;
+            text-decoration: none !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(201, 162, 39, 0.4);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary:focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 2px;
+        }
+        
+        /* Card Hover */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(12, 74, 110, 0.15);
+        }
+        
+        /* Decorative Elements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
+        }
+        
+        /* Pricing Highlight */
+        .price-highlight {
+            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);
+        }
+        
+        /* Pattern Background */
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Counter Animation */
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .count-animate {
+            animation: countUp 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-white text-sky-950 antialiased">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-gradient min-h-screen relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-sky-400/10 rounded-full blur-3xl float-animation"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-accent-gold/10 rounded-full blur-3xl float-animation" style="animation-delay: -2s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sky-300/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="w-full px-4 py-16 md:py-20 relative z-10">
+            <!-- Top Badge -->
+            <div class="flex justify-center mb-8 reveal">
+                <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sky-100 text-sm font-medium">
+                    <span class="w-2 h-2 bg-accent-gold rounded-full animate-pulse"></span>
+                    Sisa Slot Terbatas
+                </span>
+            </div>
+            
+            <!-- Main Headline -->
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 reveal" style="transition-delay: 0.1s;">
+                    Bisnis Anda Stagnan,<br>
+                    <span class="text-accent-warm">Padahal Potensinya Besar</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-sky-100 mb-8 leading-relaxed reveal" style="transition-delay: 0.2s;">
+                    Anda sudah berjuang keras, tapi revenue seolah terjebak di angka yang sama. 
+                    Tanpa peta yang jelas dan mentor yang tepat, setiap langkah terasa seperti jalan buntu.
+                </p>
+                
+                <p class="text-sky-200 text-base md:text-lg mb-10 reveal" style="transition-delay: 0.3s;">
+                    Saatnya mendapatkan arahan strategis dari coach yang telah membantu ratusan pebisnis keluar dari zona stagnan.
+                </p>
+                
+                <!-- CTA Button -->
+                <div class="reveal" style="transition-delay: 0.4s;">
+                    <a href="#pricing" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Konsultasi Gratis Sekarang
+                    </a>
+                    <p class="text-sky-300 text-sm mt-4">Tanpa komitmen, tanpa tekanan</p>
+                </div>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="mt-12 max-w-2xl mx-auto reveal" style="transition-delay: 0.5s;">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/0c4a6e/7dd3fc?text=Business+Coaching+Session" 
+                         alt="Sesi coaching bisnis 1-on-1" 
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent-gold/20 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-sky-900">500+</p>
+                                <p class="text-sm text-sky-600">Pebisnis Terbantu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- PROBLEM SECTION -->
+    <section class="py-16 md:py-20 bg-white pattern-bg">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Masalah Yang Anda Hadapi</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-6 reveal">
+                    Apakah Ini Yang Anda Rasakan?
+                </h2>
+            </div>
+            
+            <div class="max-w-2xl mx-auto space-y-4">
+                <!-- Problem Cards -->
+                <div class="bg-gradient-to-r from-sky-50 to-white border border-sky-100 rounded-xl p-6 card-hover reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sky-900 text-lg mb-2">Revenue Stagnan Berbulan-bulan</h3>
+                            <p class="text-sky-700">Anda sudah mencoba berbagai strategi, tapi angka penjualan seolah terjebak dan tidak mau naik.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-sky-50 to-white border border-sky-100 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sky-900 text-lg mb-2">Tidak Ada Mentor Yang Tepat</h3>
+                            <p class="text-sky-700">Berjalan sendirian tanpa arahan membuat setiap keputusan terasa seperti tebakan buta.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-sky-50 to-white border border-sky-100 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sky-900 text-lg mb-2">Waktu Terbuang Percobaan</h3>
+                            <p class="text-sky-700">Setiap hari berlalu tanpa kemajuan berarti, sementara kompetitor terus melangkah maju.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-sky-50 to-white border border-sky-100 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.3s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sky-900 text-lg mb-2">Belum Punya Sistem Terstruktur</h3>
+                            <p class="text-sky-700">Operasional bisnis masih berantakan, tidak ada SOP yang bisa diandalkan untuk scale.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GUIDE SECTION - About Coach -->
+    <section class="py-16 md:py-20 section-gradient">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Panduan Anda</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Kenapa Saya Bisa Membantu Anda
+                    </h2>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 reveal">
+                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                        <img src="https://placehold.co/200x200/0369a1/ffffff?text=Coach" 
+                             alt="Business Coach Profile" 
+                             class="w-32 h-32 rounded-2xl object-cover shadow-lg flex-shrink-0">
+                        <div>
+                            <h3 class="font-display text-2xl font-bold text-sky-900 mb-2">Ahmad Rizki</h3>
+                            <p class="text-accent-gold font-semibold mb-4">Business Strategist & Coach</p>
+                            <p class="text-sky-700 leading-relaxed mb-6">
+                                Selama 8 tahun, saya telah membantu lebih dari 500 pebisnis melewati fase stagnan dan mencapai pertumbuhan yang signifikan. Pengalaman gagal dan sukses dalam membangun 3 bisnis sendiri mengajarkan saya apa yang benar-benar bekerja — bukan teori dari buku.
+                            </p>
+                            
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div class="bg-sky-50 rounded-xl p-4">
+                                    <p class="font-display text-2xl font-bold text-sky-900">8+</p>
+                                    <p class="text-sm text-sky-600">Tahun Pengalaman</p>
+                                </div>
+                                <div class="bg-sky-50 rounded-xl p-4">
+                                    <p class="font-display text-2xl font-bold text-sky-900">500+</p>
+                                    <p class="text-sm text-sky-600">Klien Terbantu</p>
+                                </div>
+                                <div class="bg-sky-50 rounded-xl p-4">
+                                    <p class="font-display text-2xl font-bold text-sky-900">3</p>
+                                    <p class="text-sm text-sky-600">Bisnis Dibangun</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PLAN SECTION - Framework -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Cara Kerja</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Roadmap Percepatan Bisnis Anda
+                    </h2>
+                    <p class="text-sky-700 reveal">Proses coaching yang terstruktur dan terukur untuk hasil maksimal</p>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="space-y-6">
+                    <div class="flex gap-4 reveal">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-sky-900 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                            <div class="w-0.5 h-full bg-sky-200 mt-2"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-semibold text-xl text-sky-900 mb-2">Deep Diagnosis Session</h3>
+                            <p class="text-sky-700">Analisis mendalam terhadap bisnis Anda — mengidentifikasi bottleneck, peluang tersembunyi, dan area prioritas yang perlu ditangani.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 reveal" style="transition-delay: 0.1s;">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-sky-900 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                            <div class="w-0.5 h-full bg-sky-200 mt-2"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-semibold text-xl text-sky-900 mb-2">Custom Strategy Design</h3>
+                            <p class="text-sky-700">Menyusun strategi pertumbuhan yang disesuaikan dengan kondisi unik bisnis Anda — bukan template generik.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 reveal" style="transition-delay: 0.2s;">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-sky-900 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                            <div class="w-0.5 h-full bg-sky-200 mt-2"></div>
+                        </div>
+                        <div class="pb-8">
+                            <h3 class="font-semibold text-xl text-sky-900 mb-2">Implementation Support</h3>
+                            <p class="text-sky-700">Pendampingan eksekusi langkah demi langkah dengan feedback real-time untuk memastikan strategi berjalan optimal.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 reveal" style="transition-delay: 0.3s;">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-sky-900 font-bold">4</div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-xl text-sky-900 mb-2">Growth Acceleration</h3>
+                            <p class="text-sky-700">Monitoring progress, penyesuaian strategi, dan optimasi berkelanjutan untuk pertumbuhan yang berkesinambungan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SOCIAL PROOF -->
+    <section class="py-12 bg-sky-50">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="text-sky-600 font-medium mb-8 reveal">Dipercaya oleh pebisnis dari berbagai industri</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 reveal">
+                    <div class="text-sky-800 font-bold text-lg">TechStartup</div>
+                    <div class="text-sky-800 font-bold text-lg">E-Commerce</div>
+                    <div class="text-sky-800 font-bold text-lg">F&B</div>
+                    <div class="text-sky-800 font-bold text-lg">Agency</div>
+                    <div class="text-sky-800 font-bold text-lg">Retail</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- TESTIMONIAL SECTION -->
+    <section class="py-16 md:py-20 bg-white pattern-bg">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Testimoni</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Apa Kata Mereka
+                    </h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal">
+                        <div class="flex items-center gap-1 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <p class="text-sky-800 text-lg leading-relaxed mb-6">
+                            "Setelah 2 tahun revenue stagnan di angka yang sama, dalam 4 bulan coaching saya berhasil melipatgandakan omset. Yang paling berharga bukan cuma angka, tapi mindset dan sistem yang sekarang saya miliki."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://placehold.co/60x60/0284c7/ffffff?text=DR" alt="Dewi Rahayu" class="w-12 h-12 rounded-full">
+                            <div>
+                                <p class="font-semibold text-sky-900">Dewi Rahayu</p>
+                                <p class="text-sm text-sky-600">Owner, Fashion E-Commerce</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal" style="transition-delay: 0.1s;">
+                        <div class="flex items-center gap-1 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <p class="text-sky-800 text-lg leading-relaxed mb-6">
+                            "Saya sangat skeptis di awal, tapi pendekatan coaching-nya sangat sistematis. Akhirnya saya punya kejelasan arah bisnis dan tim bisa berjalan lebih mandiri dengan SOP yang sudah dibuat bersama."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://placehold.co/60x60/0369a1/ffffff?text=BS" alt="Budi Santoso" class="w-12 h-12 rounded-full">
+                            <div>
+                                <p class="font-semibold text-sky-900">Budi Santoso</p>
+                                <p class="text-sm text-sky-600">Founder, Digital Agency</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal" style="transition-delay: 0.2s;">
+                        <div class="flex items-center gap-1 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <p class="text-sky-800 text-lg leading-relaxed mb-6">
+                            "Sebagai pebisnis pemula, saya sering bingung harus mulai dari mana. Coaching ini memberikan peta jalan yang jelas. Sekarang bisnis F&B saya sudah punya 3 cabang dalam waktu 1 tahun."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://placehold.co/60x60/0c4a6e/ffffff?text=SA" alt="Siti Aminah" class="w-12 h-12 rounded-full">
+                            <div>
+                                <p class="font-semibold text-sky-900">Siti Aminah</p>
+                                <p class="text-sm text-sky-600">Owner, F&B Business</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- COMPARISON SECTION -->
+    <section class="py-16 md:py-20 bg-sky-50">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Perbandingan</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Dengan vs Tanpa Coaching
+                    </h2>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden reveal">
+                    <!-- Table Header -->
+                    <div class="grid grid-cols-2 bg-sky-900 text-white">
+                        <div class="p-4 text-center font-semibold">Tanpa Coaching</div>
+                        <div class="p-4 text-center font-semibold bg-accent-gold text-sky-900">Dengan Coaching</div>
+                    </div>
+                    
+                    <!-- Table Rows -->
+                    <div class="divide-y divide-sky-100">
+                        <div class="grid grid-cols-2">
+                            <div class="p-4 flex items-center gap-2 text-sky-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Coba-coba sendiri
+                            </div>
+                            <div class="p-4 flex items-center gap-2 text-sky-900 bg-sky-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Strategi terstruktur
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2">
+                            <div class="p-4 flex items-center gap-2 text-sky-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Belajar dari kesalahan
+                            </div>
+                            <div class="p-4 flex items-center gap-2 text-sky-900 bg-sky-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Belajar dari pengalaman
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2">
+                            <div class="p-4 flex items-center gap-2 text-sky-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Tidak ada akuntabilitas
+                            </div>
+                            <div class="p-4 flex items-center gap-2 text-sky-900 bg-sky-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Pendampingan konsisten
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2">
+                            <div class="p-4 flex items-center gap-2 text-sky-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                SOP tidak jelas
+                            </div>
+                            <div class="p-4 flex items-center gap-2 text-sky-900 bg-sky-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Sistem terdokumentasi
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2">
+                            <div class="p-4 flex items-center gap-2 text-sky-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Proses lama & melelahkan
+                            </div>
+                            <div class="p-4 flex items-center gap-2 text-sky-900 bg-sky-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Hasil lebih cepat
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="py-16 md:py-20 bg-white">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Investasi</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Mulai Perjalanan Transformasi Anda
+                    </h2>
+                </div>
+                
+                <!-- Scarcity Banner -->
+                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-4 mb-8 text-center reveal">
+                    <div class="flex items-center justify-center gap-2 text-amber-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <span class="font-semibold">Sisa Slot Bulan Ini:</span>
+                        <span class="font-bold text-lg" id="slotCounter">7</span>
+                        <span>slot</span>
+                    </div>
+                </div>
+                
+                <!-- Pricing Card -->
+                <div class="price-highlight rounded-2xl p-1 reveal">
+                    <div class="bg-white rounded-xl p-6 md:p-8">
+                        <!-- Package Name -->
+                        <div class="text-center mb-6">
+                            <span class="inline-block bg-accent-gold/20 text-accent-gold font-semibold px-4 py-1 rounded-full text-sm mb-3">Sesi Pertama Spesial</span>
+                            <h3 class="font-display text-2xl font-bold text-sky-900">1-on-1 Business Coaching</h3>
+                            <p class="text-sky-600">Sesi 90 Menit Intensif</p>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="text-center mb-8">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <span class="text-sky-400 line-through text-xl">Rp 2.000.000</span>
+                                <span class="bg-green-100 text-green-700 text-sm font-semibold px-2 py-1 rounded">HEMAT 62%</span>
+                            </div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-sky-600 text-lg">Rp</span>
+                                <span class="font-display text-5xl font-bold text-sky-900">750.000</span>
+                            </div>
+                            <p class="text-sky-500 text-sm mt-2">per sesi pertama</p>
+                        </div>
+                        
+                        <!-- What's Included -->
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="text-sky-800">Sesi private coaching 90 menit</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="text-sky-800">Deep diagnosis bisnis Anda</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="text-sky-800">Roadmap pertumbuhan custom</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="text-sky-800">Rekaman sesi untuk review</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="text-sky-800">Follow-up via chat 7 hari</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <a href="#" class="btn-primary w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Beli Sekarang
+                        </a>
+                        
+                        <!-- Trust Micro-copy -->
+                        <p class="text-center text-sky-500 text-sm mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            Pembayaran aman & terenkripsi
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- BONUS SECTION -->
+    <section class="py-16 md:py-20 bg-sky-50">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">Bonus Eksklusif</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Nilai Lebih Untuk Anda
+                    </h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Bonus 1 -->
+                    <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="font-semibold text-lg text-sky-900">Template SOP Bisnis</h3>
+                                    <span class="text-accent-gold font-semibold">Nilai Rp 500.000</span>
+                                </div>
+                                <p class="text-sky-700">15 template Standard Operating Procedure siap pakai untuk berbagai fungsi bisnis — marketing, operasional, hingga keuangan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bonus 2 -->
+                    <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.1s;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="font-semibold text-lg text-sky-900">Resource Library Access</h3>
+                                    <span class="text-accent-gold font-semibold">Nilai Rp 750.000</span>
+                                </div>
+                                <p class="text-sky-700">Akses ke perpustakaan digital berisi e-book, checklist, dan tools bisnis yang sudah teruji selama 8 tahun.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bonus 3 -->
+                    <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.2s;">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="font-semibold text-lg text-sky-900">Komunitas Eksklusif</h3>
+                                    <span class="text-accent-gold font-semibold">Nilai Rp 300.000</span>
+                                </div>
+                                <p class="text-sky-700">Bergabung dengan grup pebisnis yang saling support — networking, sharing pengalaman, dan kolaborasi bisnis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Total Value -->
+                <div class="bg-sky-900 rounded-xl p-6 mt-8 text-center reveal">
+                    <p class="text-sky-300 mb-2">Total Value Bonus:</p>
+                    <p class="text-white text-2xl font-bold line-through mb-2">Rp 1.550.000</p>
+                    <p class="text-accent-warm text-lg font-semibold">GRATIS untuk peserta sesi pertama</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GUARANTEE SECTION -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="w-full px-4">
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-gradient-to-br from-sky-50 to-white border border-sky-100 rounded-2xl p-8 text-center reveal">
+                    <div class="w-20 h-20 bg-accent-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold text-sky-900 mb-4">Garansi Sesi Bermakna</h3>
+                    <p class="text-sky-700 leading-relaxed mb-4">
+                        Jika setelah sesi 90 menit Anda merasa tidak mendapatkan nilai yang signifikan untuk bisnis Anda, kami akan mengembalikan 100% investasi Anda — tanpa pertanyaan sulit.
+                    </p>
+                    <p class="text-sky-600 text-sm">
+                        Kami percaya hasil berbicara lebih keras dari janji. Risiko ada di kami, keuntungan ada di Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ SECTION -->
+    <section class="py-16 md:py-20 bg-sky-50">
+        <div class="w-full px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block text-sky-600 font-semibold text-sm tracking-wide uppercase mb-4 reveal">FAQ</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-sky-950 mb-4 reveal">
+                        Pertanyaan Yang Sering Diajukan
+                    </h2>
+                </div>
+                
+                <div class="space-y-4" id="faqContainer">
+                    <!-- FAQ items will be populated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FINAL CTA SECTION -->
+    <section class="py-16 md:py-20 hero-gradient relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute top-10 right-10 w-64 h-64 bg-accent-gold/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-48 h-48 bg-sky-400/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="w-full px-4 relative z-10">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6 reveal">
+                    Bisnis Anda Layak Berkembang
+                </h2>
+                <p class="text-sky-100 text-lg mb-8 reveal">
+                    Setiap hari yang Anda lewati tanpa arahan jelas adalah kesempatan yang terbuang. 
+                    Ambil langkah pertama menuju transformasi bisnis Anda sekarang.
+                </p>
+                
+                <!-- Scarcity Reminder -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mb-8 reveal">
+                    <p class="text-white font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Sisa Slot: <span class="font-bold" id="finalSlotCounter">7</span> slot untuk bulan ini
+                    </p>
+                </div>
+                
+                <div class="reveal">
+                    <a href="#pricing" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Daftar Sesi Sekarang
+                    </a>
+                    <p class="text-sky-200 text-sm mt-4">Investasi kecil untuk perubahan besar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- COPYRIGHT -->
+    <div class="py-6 bg-sky-950 text-center">
+        <p class="text-sky-400 text-sm">&copy; 2024 Business Coaching. All rights reserved.</p>
+    </div>
+    
+    <script>
+        // FAQ Data
+        const faqData = [
+            {
+                question: "Apakah coaching ini cocok untuk pemula?",
+                answer: "Sangat cocok. Coaching ini dirancang untuk pebisnis di berbagai level, termasuk yang baru memulai. Kami akan menyesuaikan materi dan pendekatan dengan kondisi bisnis Anda saat ini."
+            },
+            {
+                question: "Bagaimana jika saya merasa tidak cocok?",
+                answer: "Kami memiliki garansi 'Sesi Bermakna'. Jika setelah sesi Anda merasa tidak mendapatkan nilai yang signifikan, investasi Anda akan dikembalikan 100% tanpa pertanyaan sulit."
+            },
+            {
+                question: "Bagaimana format sesi coaching-nya?",
+                answer: "Sesi dilakukan secara online via video call (Zoom/Google Meet) selama 90 menit. Anda akan mendapatkan rekaman sesi untuk bisa di-review kembali."
+            },
+            {
+                question: "Kenapa harganya lebih terjangkau dari coaching lain?",
+                answer: "Ini adalah harga khusus untuk sesi pertama agar Anda bisa merasakan manfaat coaching tanpa risiko besar. Setelah merasakan hasil, banyak klien melanjutkan ke paket berkelanjutan."
+            },
+            {
+                question: "Apakah ada jadwal yang fleksibel?",
+                answer: "Ya, sesi dijadwalkan sesuai ketersediaan Anda. Kami memiliki slot di pagi, siang, dan malam hari untuk mengakomodasi jadwal pebisnis yang sibuk."
+            },
+            {
+                question: "Berapa lama waktu yang dibutuhkan untuk melihat hasil?",
+                answer: "Setiap bisnis berbeda, namun banyak klien mulai melihat kejelasan arah dan perubahan positif dalam 2-4 minggu setelah mengimplementasikan strategi dari sesi pertama."
+            }
+        ];
+        
+        // Initialize FAQ
+        const faqContainer = document.getElementById('faqContainer');
+        
+        faqData.forEach((item, index) => {
+            const faqItem = document.createElement('div');
+            faqItem.className = 'bg-white border border-sky-100 rounded-xl overflow-hidden reveal';
+            faqItem.style.transitionDelay = `${index * 0.1}s`;
+            
+            faqItem.innerHTML = `
+                <button class="faq-toggle w-full text-left p-6 flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-inset" aria-expanded="false">
+                    <span class="font-semibold text-sky-900 pr-4">${item.question}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon flex-shrink-0 transition-transform duration-300"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-content hidden px-6 pb-6">
+                    <p class="text-sky-700 leading-relaxed">${item.answer}</p>
+                </div>
+            `;
+            
+            faqContainer.appendChild(faqItem);
+        });
+        
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.faq-icon');
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-toggle').forEach(otherButton => {
+                    if (otherButton !== this) {
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherButton.nextElementSibling.classList.add('hidden');
+                        otherButton.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current FAQ
+                this.setAttribute('aria-expanded', !isExpanded);
+                content.classList.toggle('hidden');
+                icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+        
+        // Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Slot Counter Animation (simulate scarcity)
+        const slotCount = 7;
+        const slotCounters = document.querySelectorAll('#slotCounter, #finalSlotCounter');
+        
+        // Respect reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (!prefersReducedMotion) {
+            slotCounters.forEach(counter => {
+                let current = 0;
+                const interval = setInterval(() => {
+                    if (current < slotCount) {
+                        current++;
+                        counter.textContent = current;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 100);
+            });
+        } else {
+            slotCounters.forEach(counter => {
+                counter.textContent = slotCount;
+            });
+        }
+    </script>
+</body>
+</html>
