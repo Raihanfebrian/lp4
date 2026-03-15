@@ -40,127 +40,54 @@
         }
     </script>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
+        body { overflow-x: hidden; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-display { font-family: 'Playfair Display', serif; }
         
-        body {
-            overflow-x: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        
-        .font-display {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         
         @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
         
-        /* Gradient Overlays */
-        .hero-gradient {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%);
-        }
+        .hero-gradient { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0284c7 100%); }
+        .section-gradient { background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%); }
         
-        .section-gradient {
-            background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
-        }
-        
-        /* Floating Animation */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .float-animation { animation: none; } }
         
-        .float-animation {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .float-animation {
-                animation: none;
-            }
-        }
-        
-        /* Button Styling */
         .btn-primary {
             background: linear-gradient(135deg, #c9a227 0%, #d4a574 100%);
             color: #0c4a6e !important;
             text-decoration: none !important;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201, 162, 39, 0.4); }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary:focus-visible { outline: 3px solid #38bdf8; outline-offset: 2px; }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(201, 162, 39, 0.4);
-        }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(12, 74, 110, 0.15); }
         
-        .btn-primary:active {
-            transform: translateY(0);
-        }
+        .glass-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .progress-bar { background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%); }
+        .price-highlight { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%); }
         
-        .btn-primary:focus-visible {
-            outline: 3px solid #38bdf8;
-            outline-offset: 2px;
-        }
-        
-        /* Card Hover */
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(12, 74, 110, 0.15);
-        }
-        
-        /* Decorative Elements */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Progress Bar */
-        .progress-bar {
-            background: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 100%);
-        }
-        
-        /* Pricing Highlight */
-        .price-highlight {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);
-        }
-        
-        /* Pattern Background */
         .pattern-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         
-        /* Counter Animation */
-        @keyframes countUp {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .count-animate {
-            animation: countUp 0.5s ease-out forwards;
-        }
+        @keyframes countUp { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+        .count-animate { animation: countUp 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="bg-white text-sky-950 antialiased">
@@ -209,10 +136,11 @@
                 </div>
             </div>
             
-            <!-- Hero Image -->
+            <!-- Hero Image - GANTI DENGAN fotolp4.png -->
             <div class="mt-12 max-w-2xl mx-auto reveal" style="transition-delay: 0.5s;">
                 <div class="relative">
-                    <img src="fotolp4.png" 
+                    <!-- PERUBAHAN DI SINI: src="./fotolp4.png" -->
+                    <img src="./fotolp4.png" 
                          alt="Sesi coaching bisnis 1-on-1" 
                          class="rounded-2xl shadow-2xl w-full">
                     <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl">
@@ -249,7 +177,6 @@
             </div>
             
             <div class="max-w-2xl mx-auto space-y-4">
-                <!-- Problem Cards -->
                 <div class="bg-gradient-to-r from-sky-50 to-white border border-sky-100 rounded-xl p-6 card-hover reveal">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -357,7 +284,6 @@
                     <p class="text-sky-700 reveal">Proses coaching yang terstruktur dan terukur untuk hasil maksimal</p>
                 </div>
                 
-                <!-- Timeline -->
                 <div class="space-y-6">
                     <div class="flex gap-4 reveal">
                         <div class="flex flex-col items-center">
@@ -434,7 +360,6 @@
                 </div>
                 
                 <div class="space-y-6">
-                    <!-- Testimonial 1 -->
                     <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal">
                         <div class="flex items-center gap-1 mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -455,7 +380,6 @@
                         </div>
                     </div>
                     
-                    <!-- Testimonial 2 -->
                     <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal" style="transition-delay: 0.1s;">
                         <div class="flex items-center gap-1 mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -476,7 +400,6 @@
                         </div>
                     </div>
                     
-                    <!-- Testimonial 3 -->
                     <div class="bg-white border border-sky-100 rounded-2xl p-6 shadow-lg card-hover reveal" style="transition-delay: 0.2s;">
                         <div class="flex items-center gap-1 mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#c9a227" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -513,13 +436,11 @@
                 </div>
                 
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden reveal">
-                    <!-- Table Header -->
                     <div class="grid grid-cols-2 bg-sky-900 text-white">
                         <div class="p-4 text-center font-semibold">Tanpa Coaching</div>
                         <div class="p-4 text-center font-semibold bg-accent-gold text-sky-900">Dengan Coaching</div>
                     </div>
                     
-                    <!-- Table Rows -->
                     <div class="divide-y divide-sky-100">
                         <div class="grid grid-cols-2">
                             <div class="p-4 flex items-center gap-2 text-sky-600">
@@ -592,7 +513,6 @@
                     </h2>
                 </div>
                 
-                <!-- Scarcity Banner -->
                 <div class="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-4 mb-8 text-center reveal">
                     <div class="flex items-center justify-center gap-2 text-amber-800">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -602,17 +522,14 @@
                     </div>
                 </div>
                 
-                <!-- Pricing Card -->
                 <div class="price-highlight rounded-2xl p-1 reveal">
                     <div class="bg-white rounded-xl p-6 md:p-8">
-                        <!-- Package Name -->
                         <div class="text-center mb-6">
                             <span class="inline-block bg-accent-gold/20 text-accent-gold font-semibold px-4 py-1 rounded-full text-sm mb-3">Sesi Pertama Spesial</span>
                             <h3 class="font-display text-2xl font-bold text-sky-900">1-on-1 Business Coaching</h3>
                             <p class="text-sky-600">Sesi 90 Menit Intensif</p>
                         </div>
                         
-                        <!-- Price -->
                         <div class="text-center mb-8">
                             <div class="flex items-center justify-center gap-3 mb-2">
                                 <span class="text-sky-400 line-through text-xl">Rp 2.000.000</span>
@@ -625,7 +542,6 @@
                             <p class="text-sky-500 text-sm mt-2">per sesi pertama</p>
                         </div>
                         
-                        <!-- What's Included -->
                         <div class="space-y-3 mb-8">
                             <div class="flex items-center gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -649,13 +565,11 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
                         <a href="#" class="btn-primary w-full flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             Beli Sekarang
                         </a>
                         
-                        <!-- Trust Micro-copy -->
                         <p class="text-center text-sky-500 text-sm mt-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                             Pembayaran aman & terenkripsi
@@ -678,7 +592,6 @@
                 </div>
                 
                 <div class="space-y-4">
-                    <!-- Bonus 1 -->
                     <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal">
                         <div class="flex items-start gap-4">
                             <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -694,7 +607,6 @@
                         </div>
                     </div>
                     
-                    <!-- Bonus 2 -->
                     <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.1s;">
                         <div class="flex items-start gap-4">
                             <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -710,7 +622,6 @@
                         </div>
                     </div>
                     
-                    <!-- Bonus 3 -->
                     <div class="bg-white border-2 border-accent-gold/30 rounded-xl p-6 card-hover reveal" style="transition-delay: 0.2s;">
                         <div class="flex items-start gap-4">
                             <div class="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -727,7 +638,6 @@
                     </div>
                 </div>
                 
-                <!-- Total Value -->
                 <div class="bg-sky-900 rounded-xl p-6 mt-8 text-center reveal">
                     <p class="text-sky-300 mb-2">Total Value Bonus:</p>
                     <p class="text-white text-2xl font-bold line-through mb-2">Rp 1.550.000</p>
@@ -768,16 +678,13 @@
                     </h2>
                 </div>
                 
-                <div class="space-y-4" id="faqContainer">
-                    <!-- FAQ items will be populated by JS -->
-                </div>
+                <div class="space-y-4" id="faqContainer"></div>
             </div>
         </div>
     </section>
     
     <!-- FINAL CTA SECTION -->
     <section class="py-16 md:py-20 hero-gradient relative overflow-hidden">
-        <!-- Decorative Elements -->
         <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
             <div class="absolute top-10 right-10 w-64 h-64 bg-accent-gold/10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-10 left-10 w-48 h-48 bg-sky-400/10 rounded-full blur-3xl"></div>
@@ -793,7 +700,6 @@
                     Ambil langkah pertama menuju transformasi bisnis Anda sekarang.
                 </p>
                 
-                <!-- Scarcity Reminder -->
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 mb-8 reveal">
                     <p class="text-white font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -818,63 +724,35 @@
     </div>
     
     <script>
-        // FAQ Data
         const faqData = [
-            {
-                question: "Apakah coaching ini cocok untuk pemula?",
-                answer: "Sangat cocok. Coaching ini dirancang untuk pebisnis di berbagai level, termasuk yang baru memulai. Kami akan menyesuaikan materi dan pendekatan dengan kondisi bisnis Anda saat ini."
-            },
-            {
-                question: "Bagaimana jika saya merasa tidak cocok?",
-                answer: "Kami memiliki garansi 'Sesi Bermakna'. Jika setelah sesi Anda merasa tidak mendapatkan nilai yang signifikan, investasi Anda akan dikembalikan 100% tanpa pertanyaan sulit."
-            },
-            {
-                question: "Bagaimana format sesi coaching-nya?",
-                answer: "Sesi dilakukan secara online via video call (Zoom/Google Meet) selama 90 menit. Anda akan mendapatkan rekaman sesi untuk bisa di-review kembali."
-            },
-            {
-                question: "Kenapa harganya lebih terjangkau dari coaching lain?",
-                answer: "Ini adalah harga khusus untuk sesi pertama agar Anda bisa merasakan manfaat coaching tanpa risiko besar. Setelah merasakan hasil, banyak klien melanjutkan ke paket berkelanjutan."
-            },
-            {
-                question: "Apakah ada jadwal yang fleksibel?",
-                answer: "Ya, sesi dijadwalkan sesuai ketersediaan Anda. Kami memiliki slot di pagi, siang, dan malam hari untuk mengakomodasi jadwal pebisnis yang sibuk."
-            },
-            {
-                question: "Berapa lama waktu yang dibutuhkan untuk melihat hasil?",
-                answer: "Setiap bisnis berbeda, namun banyak klien mulai melihat kejelasan arah dan perubahan positif dalam 2-4 minggu setelah mengimplementasikan strategi dari sesi pertama."
-            }
+            { question: "Apakah coaching ini cocok untuk pemula?", answer: "Sangat cocok. Coaching ini dirancang untuk pebisnis di berbagai level, termasuk yang baru memulai. Kami akan menyesuaikan materi dan pendekatan dengan kondisi bisnis Anda saat ini." },
+            { question: "Bagaimana jika saya merasa tidak cocok?", answer: "Kami memiliki garansi 'Sesi Bermakna'. Jika setelah sesi Anda merasa tidak mendapatkan nilai yang signifikan, investasi Anda akan dikembalikan 100% tanpa pertanyaan sulit." },
+            { question: "Bagaimana format sesi coaching-nya?", answer: "Sesi dilakukan secara online via video call (Zoom/Google Meet) selama 90 menit. Anda akan mendapatkan rekaman sesi untuk bisa di-review kembali." },
+            { question: "Kenapa harganya lebih terjangkau dari coaching lain?", answer: "Ini adalah harga khusus untuk sesi pertama agar Anda bisa merasakan manfaat coaching tanpa risiko besar. Setelah merasakan hasil, banyak klien melanjutkan ke paket berkelanjutan." },
+            { question: "Apakah ada jadwal yang fleksibel?", answer: "Ya, sesi dijadwalkan sesuai ketersediaan Anda. Kami memiliki slot di pagi, siang, dan malam hari untuk mengakomodasi jadwal pebisnis yang sibuk." },
+            { question: "Berapa lama waktu yang dibutuhkan untuk melihat hasil?", answer: "Setiap bisnis berbeda, namun banyak klien mulai melihat kejelasan arah dan perubahan positif dalam 2-4 minggu setelah mengimplementasikan strategi dari sesi pertama." }
         ];
         
-        // Initialize FAQ
         const faqContainer = document.getElementById('faqContainer');
-        
         faqData.forEach((item, index) => {
             const faqItem = document.createElement('div');
             faqItem.className = 'bg-white border border-sky-100 rounded-xl overflow-hidden reveal';
             faqItem.style.transitionDelay = `${index * 0.1}s`;
-            
             faqItem.innerHTML = `
                 <button class="faq-toggle w-full text-left p-6 flex items-center justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-inset" aria-expanded="false">
                     <span class="font-semibold text-sky-900 pr-4">${item.question}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon flex-shrink-0 transition-transform duration-300"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
-                <div class="faq-content hidden px-6 pb-6">
-                    <p class="text-sky-700 leading-relaxed">${item.answer}</p>
-                </div>
+                <div class="faq-content hidden px-6 pb-6"><p class="text-sky-700 leading-relaxed">${item.answer}</p></div>
             `;
-            
             faqContainer.appendChild(faqItem);
         });
         
-        // FAQ Toggle Functionality
         document.querySelectorAll('.faq-toggle').forEach(button => {
             button.addEventListener('click', function() {
                 const content = this.nextElementSibling;
                 const icon = this.querySelector('.faq-icon');
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                
-                // Close all other FAQs
                 document.querySelectorAll('.faq-toggle').forEach(otherButton => {
                     if (otherButton !== this) {
                         otherButton.setAttribute('aria-expanded', 'false');
@@ -882,21 +760,13 @@
                         otherButton.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
                     }
                 });
-                
-                // Toggle current FAQ
                 this.setAttribute('aria-expanded', !isExpanded);
                 content.classList.toggle('hidden');
                 icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
             });
         });
         
-        // Scroll Reveal Animation
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -905,49 +775,27 @@
                 }
             });
         }, observerOptions);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Smooth Scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
         
-        // Slot Counter Animation (simulate scarcity)
         const slotCount = 7;
         const slotCounters = document.querySelectorAll('#slotCounter, #finalSlotCounter');
-        
-        // Respect reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
         if (!prefersReducedMotion) {
             slotCounters.forEach(counter => {
                 let current = 0;
                 const interval = setInterval(() => {
-                    if (current < slotCount) {
-                        current++;
-                        counter.textContent = current;
-                    } else {
-                        clearInterval(interval);
-                    }
+                    if (current < slotCount) { current++; counter.textContent = current; } else { clearInterval(interval); }
                 }, 100);
             });
-        } else {
-            slotCounters.forEach(counter => {
-                counter.textContent = slotCount;
-            });
-        }
+        } else { slotCounters.forEach(counter => { counter.textContent = slotCount; }); }
     </script>
 </body>
 </html>
